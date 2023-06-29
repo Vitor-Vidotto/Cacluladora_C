@@ -1,0 +1,629 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+#include <math.h>
+#include <locale.h>
+#include <windows.h>
+#include <dos.h>
+
+void descricao(); //Cria uma função que irá servir como manual da caculadora
+void repetir(); //Cria uma função que dará uma frase que se repete
+void saida();//Cria a Função que realisa a ação de saída
+
+
+int main(){
+	setlocale(LC_ALL, "Portuguese");
+	 
+	int x=1, fact=1, Calculadora=1, i, numerof, contuacao;
+	char Operacao , calc, escolha[20];
+	double primeiro, segundo, resultado;
+	float Num1, Num2, resultadolog;
+	
+	contuacao = 0;
+	
+	system("COLOR 0F");
+	printf("===-- Bem-Vindo(a) a MELHOR Calculadora C --=== \n desse código\n");
+	descricao();
+    while(x){
+    	printf("\n\n> Escolha uma operação ou comando:");
+    	Beep(200, 100);
+    	calc=getche();
+    	
+    	switch(calc){
+    	case 'E':
+    	case 'e':
+    		Beep(261, 100);
+    		Beep(329, 100);
+    		Beep(392, 100);
+    		system("COLOR 0F");
+    		break;
+    	case 'C':
+    	case 'c':
+    		Beep(392, 100);
+    		Beep(329, 100);
+    		Beep(261, 100);
+    		system("COLOR F0");
+    		break;
+    	case '+': //adição
+    		printf("\nSua escolha foi: Adição \n ");
+    		Beep(1060, 100);
+    		
+    	if(contuacao == 0){
+    	    contuacao = 1;
+    	
+     		printf("Digite o primeiro número: ");
+     		 scanf("%lf", &primeiro);
+     		 printf("Digite o segundo número: ");
+     		 scanf("%lf", &segundo);
+     		 
+     		 resultado = primeiro + segundo;
+     		 
+       		printf("%.1lf + %.1lf = %.1lf\n", primeiro, segundo, resultado);
+       	}else{
+       		primeiro = resultado;
+       		
+       		printf("\nDigite o segundo número: ");
+     		 scanf("%lf", &segundo);
+     		 
+     		 resultado = primeiro + segundo;
+     		 
+       		printf("%.1lf + %.1lf = %.1lf\n", primeiro, segundo, resultado);
+		   }// para checar se é uma continuação.
+        	break; // fim da adição
+   		case '-'://subritração
+   			Beep(1060, 100);
+    		printf("\nSua escolha foi: Subtração \n ");
+    		
+   			if(contuacao == 0){
+   			contuacao = 1;
+   			
+     	 	printf("Digite o primeiro número: ");
+     	 	scanf("%lf", &primeiro);
+     	 	printf("Digite o subtrator: ");
+     	 	scanf("%lf", &segundo);
+     	 	
+     	 	resultado = primeiro - segundo;
+     	 	
+         	printf("%.1lf - %.1lf = %.1lf\n", primeiro, segundo, resultado);
+         }else{
+         	primeiro = resultado;
+         	
+         	printf("\nDigite o subtrator: ");
+     	 	scanf("%lf", &segundo);
+     	 	
+     	 	resultado = primeiro - segundo;
+     	 	
+         	printf("%.1lf - %.1lf = %.1lf\n", primeiro, segundo, resultado);
+		 }// para checar se é uma continuação.
+        	break;//fim da subritração
+   		case '*'://multiplicação
+   			Beep(1060, 100);
+    		printf("\nSua escolha foi: Multiplicação \n ");
+    		
+    		if(contuacao == 0){
+   			contuacao = 1;
+   			
+     		printf("Digite o primeiro número: ");
+     		scanf("%lf", &primeiro);
+     	 	printf("Digite o segundo número: ");
+     	 	scanf("%lf", &segundo);
+     	 	
+     	 	resultado = primeiro * segundo;
+     	 	
+         	printf("%.1lf * %.1lf = %.1lf\n", primeiro, segundo, resultado);
+         }else{
+         	primeiro = resultado;
+
+         	printf("\nDigite o segundo número: ");
+     	 	scanf("%lf", &segundo);
+     	 	
+     	 	resultado = primeiro * segundo;
+     	 	
+         	printf("%.1lf * %.1lf = %.1lf\n", primeiro, segundo, resultado);
+		 }// para checar se é uma continuação.
+        	break;//fim da multiplicação
+    	case '/'://divisão
+    		Beep(1060, 100);
+    		printf("\nSua escolha foi: Divisão \n ");
+    		
+    		if(contuacao == 0){
+   			contuacao = 1;
+   			
+     	 	printf("Digite o numerador: ");
+     		 scanf("%lf", &primeiro);
+     		 printf("Digite o divisor: ");
+     		 scanf("%lf", &segundo);
+     		 if (segundo == 0 ) {
+          	  printf("ERRO, IMPOSSÍVEL REALIZAR ESSA OPERAÇÃO... Sintax ERROR\n\a");
+         	 system("pause");
+         	 system("cls");
+         	 descricao();
+			  }
+         	 else{
+         	resultado = primeiro / segundo;
+         	
+        	 printf("%.1lf / %.1lf = %.1lf\n", primeiro, segundo, resultado);
+			 }
+		}else{
+			primeiro = resultado;
+			
+			printf("Digite o divisor: ");
+     		 scanf("%lf", &segundo);
+     		 if (segundo == 0 ) {
+          	  printf("ERRO, IMPOSSÍVEL REALIZAR ESSA OPERAÇÃO... Sintax ERROR\n\a");
+         	 system("pause");
+         	 system("cls");
+         	 descricao();
+			  }
+         	 else{
+         	resultado = primeiro / segundo;
+         	
+        	 printf("%.1lf / %.1lf = %.1lf\n", primeiro, segundo, resultado);
+		}
+	}// para checar se é uma continuação.
+        	break;//fim da divisão
+		case '^'://potência 
+			Beep(1060, 100);
+			printf("\nSua escolha foi: Potência \n ");
+			
+			if(contuacao == 0){
+    	    contuacao = 1;
+    	    
+		 	printf("Digite o primeiro número: ");
+     	 	scanf("%lf", &primeiro);
+     	 	printf("Digite a potência: ");
+     		scanf("%lf", &segundo);
+     		
+			resultado=pow(primeiro,segundo);
+			
+         	printf("\n%lf Elevado a %lf = %lf \n",primeiro,segundo,resultado);
+         }else{
+         	primeiro = resultado;
+         	
+         	printf("Digite a potência: ");
+     		scanf("%lf", &segundo);
+     		
+			resultado=pow(primeiro,segundo);
+			
+         	printf("\n%lf Elevado a %lf = %lf \n",primeiro,segundo,resultado);
+		 }// para checar se é uma continuação.
+        	break;//fim da potência
+		case 'f'://fatoração
+		case 'F':
+			Beep(1060, 100);
+			printf("\nSua escolha foi: Fatorial \n ");
+			
+			if(contuacao == 0){
+    	    contuacao = 1;
+    	    
+			printf("Digite um número positivo: ");
+     	 	scanf("%d",&numerof);
+     	 	if (numerof <= 0 ) {
+          	 printf("ERRO, IMPOSSÍVEL REALIZAR ESSA OPERAÇÃO... Sintax ERROR\n\a");
+         	 system("pause");
+         	 system("cls");
+         	 descricao();}
+         	 else{
+         	 	fact=1;
+  	 	 	for(i=1;i<=numerof;i++)
+  		 	fact=fact*i;
+ 		 	printf("\n");
+  		 	printf("O Fatorial do número digitado (%d) é:%d\n",numerof,fact);
+			 }
+	     	}else{
+	     		if(resultado >= 1){
+	     		fact = resultado;
+				 }
+	     		numerof = fact;
+	     		
+	     		if (numerof <= 0 ) {
+          	     printf("ERRO, IMPOSSÍVEL REALIZAR ESSA OPERAÇÃO... Sintax ERROR\n\a");
+         	     system("pause");
+             	 system("cls");
+             	 descricao();}
+         	 else{
+         	 	fact=1;
+  	 	    	for(i=1;i<=numerof;i++)
+  		       	fact=fact*i;
+ 		 	     printf("\n");
+  		 	     printf("O Fatorial do número digitado (%d) é:%d\n",numerof,fact);
+				  }
+			 }	 // para checar se é uma continuação.
+        	break;//fim da fatoração
+    	case 'm'://comando Menu
+    	case 'M':
+    		Beep(1060, 100);
+    		 descricao();
+        	break;//fim do comando Menu
+        case 'Z'://comando para zerar os valores
+        case 'z':
+        	Beep(1060, 100);
+        	contuacao=0;
+        	resultado=0;
+        	printf("\nValores Zerados com sucesso");
+        	break;//fim do comando para zerar os valores
+		case 'S'://comando de saida
+		case 's':
+			saida();
+     	   break;//fim do comando de saida
+    	case 'l'://comando para limpar a tela
+   		case 'L': 
+   			Beep(1060, 100);
+	  		system("cls");
+	  		 descricao();
+       		 break;//fim do comando para limpar a tela
+    	case 'B'://logaritimo
+		case 'b':
+			Beep(1060, 100);
+			printf("\nSua escolha foi: Logaritimo \n ");
+			
+			if(contuacao == 0){
+    	    contuacao = 1;
+    	    
+    		printf("\nDigite a Base do Logaritimo : \n");
+        	scanf("%f", & Num1);
+        	if (Num1 <= 0) {
+        	  printf("ERRO, IMPOSSÍVEL REALIZAR ESSA OPERAÇÃO... Sintax ERROR\n\a");
+        	Num1 =0;
+        	 Num2 =0;
+         	resultadolog =0;
+         	 system("pause");
+          	system("cls");
+          	descricao();
+       		 }
+       		 else if (Num1 > 0) {
+       		printf("\nDigite a o Número Desejado : \n");
+        	scanf("%f", & Num2);
+        	resultadolog = (log(Num2) / log(Num1));
+        	printf("Aqui seu resultado:\nLog[base %f]%f = %.3f (3 casas decimais)\n\n", Num1, Num2, resultadolog);
+        	Num1 =0;
+        	Num2 =0;
+        	
+        	resultado = resultadolog;
+        	resultadolog =0; }
+        } else{
+        	Num2 = resultado;
+        	
+        	printf("\nDigite a Base do Logaritimo : \n");
+        	scanf("%f", & Num1);
+        	if (Num1 <= 0) {
+        	  printf("ERRO, IMPOSSÍVEL REALIZAR ESSA OPERAÇÃO... Sintax ERROR\n\a");
+        	Num1 =0;
+        	 Num2 =0;
+         	resultadolog =0;
+         	 system("pause");
+          	system("cls");
+          	descricao();
+       		 }
+       		 else if (Num1 > 0) {
+        	resultadolog = (log(Num2) / log(Num1));
+        	printf("Aqui seu resultado:\nLog[base %f]%f = %.3f (3 casas decimais)\n\n", Num1, Num2, resultadolog);
+        	Num1 =0;
+        	Num2 =0;
+        	
+        	resultado = resultadolog;
+        	resultadolog =0; }
+		}// para checar se é uma continuação.
+        	break;//fim do logaritimo
+        case 'G'://logaritimo natural
+    	case 'g':
+    		Beep(1060, 100);
+    		printf("\nSua escolha foi: Logaritimo Natural \n ");
+    		
+    		if(contuacao == 0){
+    	    contuacao = 1;
+    	    
+     	 	printf("Digite o número para obter seu resultado em log (base = e)\n");
+  			 scanf("%lf", &primeiro);
+  			  if (primeiro <= 0 ) {
+          	  printf("ERRO, IMPOSSÍVEL REALIZAR ESSA OPERAÇÃO... Sintax ERROR\n\a");
+         	 system("pause");
+         	 system("cls");
+         	 descricao();
+      		  }
+      		else {
+      			resultado = log(primeiro);
+ 		 	printf("o Log natural de %.2lf = %lf\n", primeiro, resultado);}
+ 		 }else{
+ 		 	primeiro = resultado;
+
+  			  if (primeiro <= 0 ) {
+          	  printf("ERRO, IMPOSSÍVEL REALIZAR ESSA OPERAÇÃO... Sintax ERROR\n\a");
+         	 system("pause");
+         	 system("cls");
+         	 descricao();
+      		  }
+      		else {
+      			resultado = log(primeiro);
+ 		 	printf("o Log natural de %.2lf = %lf\n", primeiro, resultado);}
+		  }// para checar se é uma continuação.
+        	break;//fim do logaritimo natural
+        case 'X'://logaritimo de base 10
+    	case 'x':
+    		Beep(1060, 100);
+    		printf("\nSua escolha foi: Logaritimo de Base 10 \n ");
+    		
+    		if(contuacao == 0){
+    	    contuacao = 1;
+    	    
+     	 	printf("Digite o número para obter seu resultado em log (base = 10)\n");
+  			 scanf("%lf", &primeiro);
+  			 resultado = log10(primeiro);
+  			 if (primeiro <= 0 ) {
+          	  printf("ERRO, IMPOSSÍVEL REALIZAR ESSA OPERAÇÃO... Sintax ERROR\n\a");
+         	 system("pause");
+         	 system("cls");
+         	 descricao();
+      		  }
+      		else {
+ 		 	printf("o Log natural de %.2lf = %lf\n", primeiro, resultado);}
+ 		 	
+ 		 }else{
+ 		 	primeiro = resultado;
+ 		 	
+  			 resultado = log10(primeiro);
+  			 if (primeiro <= 0 ) {
+          	  printf("ERRO, IMPOSSÍVEL REALIZAR ESSA OPERAÇÃO... Sintax ERROR\n\a");
+         	 system("pause");
+         	 system("cls");
+         	 descricao();
+      		  }
+      		else if (primeiro > 0 ) {
+ 		 	printf("o Log natural de %.2lf = %lf\n", primeiro, resultado);}
+		  }// para checar se é uma continuação.
+ 		 	
+        	break;//fim do logaritimo de base 10
+        case 'K'://Cosseno
+        case 'k':
+        	Beep(1060, 100);
+        	printf("\nSua escolha foi: Cosseno \n ");
+        	
+        	if(contuacao == 0){
+    	    contuacao = 1;
+    	    
+         	printf("Insira Seu ângulo: ");
+         	scanf("%f", & Num1);
+       		 resultado = (cos(Num1 * 3.14159 / 180));
+       		 printf("O Cosseno do ângulo desejado é:\nCosine(%f) = %.3f (3 casas decimais)\n\n", Num1, resultado);
+         	 }else{
+         	 	Num1=resultado;
+         	 	
+         	 	resultado = (cos(Num1 * 3.14159 / 180));
+       		 printf("O Cosseno do ângulo desejado é:\nCosine(%f) = %.3f (3 casas decimais)\n\n", Num1, resultado);
+			  }// para checar se é uma continuação.
+			break;//fim do Cosseno
+        case 'O'://Seno
+        case 'o':
+        	Beep(1060, 100);
+         	printf("\nSua escolha foi: Seno \n ");
+         	
+         	if(contuacao == 0){
+    	    contuacao = 1;
+    	    
+         	printf("Insira Seu ângulo: ");
+         	scanf("%f", & Num1);
+       		 resultado = (sin(Num1 * 3.14159 / 180));
+       		 printf("O Seno do ângulo desejado é:\nCosine(%f) = %.3f (3 casas decimais)\n\n", Num1, resultado);
+		}else{
+			Num1 = resultado;
+			
+			resultado = (sin(Num1 * 3.14159 / 180));
+       		 printf("O Seno do ângulo desejado é:\nCosine(%f) = %.3f (3 casas decimais)\n\n", Num1, resultado);
+		}// para checar se é uma continuação.
+		break;//Fim do seno
+        case 't'://Tangente
+        case 'T':
+        	Beep(1060, 100);
+        	printf("\nSua escolha foi: Tangente \n ");
+        	 
+        	 if(contuacao == 0){
+    	    contuacao = 1;
+    	    
+         	printf("Insira Seu ângulo: ");
+         	scanf("%f", & Num1);
+       		 resultado = (tan(Num1 * 3.14159 / 180));
+       		 printf("A tangente do ângulo desejado é:\nCosine(%f) = %.3f (3 casas decimais)\n\n", Num1, resultado);
+		}else{
+			Num1 = resultado;
+			
+			resultado = (tan(Num1 * 3.14159 / 180));
+       		printf("A tangente do ângulo desejado é:\nCosine(%f) = %.3f (3 casas decimais)\n\n", Num1, resultado);
+		}// para checar se é uma continuação.
+         	 break;//fim da Tangente
+		case 'Q'://Raiz quadrada
+		case 'q':
+			Beep(1060, 100);
+    		printf("\nSua escolha foi: Raiz Quadrada \n ");
+    		
+    		if(contuacao == 0){
+    	    contuacao = 1;
+    	    
+     		 printf("Digite o número para obter sua raiz quadrada\n");
+  			 scanf("%lf", &primeiro);
+
+  			resultado = sqrt(primeiro);
+
+   			printf("A raiz quadrada de %.2lf é =  %.2lf\n", primeiro, resultado);
+   			}else{
+   				primeiro= resultado;
+   				
+   				resultado = sqrt(primeiro);
+
+   			printf("A raiz quadrada de %.2lf é =  %.2lf\n", primeiro, resultado);
+			   }// para checar se é uma continuação.
+        	break;//fim da raiz quadrada 
+    			
+    		default: 
+    		Beep(1200, 200);
+    		Beep(1200, 300);
+    		printf("\n Operação não encontrada!");//para quando não corresponder a nenhum dos 'case'.
+		}
+	}
+	return 0;
+}
+
+void repetir(){
+	printf("Vamos lá, Escolha Operador!\n");
+}//Comando para apresentar essa frase (estetico).
+void descricao(){
+    printf("\n===-- MENU --===\n");
+    
+	printf("\n==--Funções da Calculadora C:\n");
+	
+	printf("\n(+)Adição ==--> Digite '+' para iniciar uma ADIÇÃO.");
+	printf("\n(-)Subtração ==--> Digite '-' para iniciar uma SUBTRAÇÃO.");
+	printf("\n(*)Multiplicação ==--> Digite '*' para iniciar uma MULTIPLICAÇÃO.");
+	printf("\n(/)Divisão ==--> Digite '/' para iniciar uma DIVISÃO.");
+	printf("\n(^)Potencia ==--> Digite '^' para iniciar uma POTÊNCIA.");
+	printf("\n(F)Fatorial ==--> Digite 'F' ou 'f' para iniciar um FATORIAL.");
+	printf("\n(Q)Raiz Quadrada ==--> Digite 'R' ou 'r' para iniciar uma RAIZ.");
+	printf("\n(G)Logaritimo Natural ==--> Digite 'G' ou 'g' para iniciar um LOGARITIMO.");
+	printf("\n(B)Logaritimo Com Base a Escolha ==--> Digite 'B' ou 'b' para iniciar um LOGARITIMO.");
+	printf("\n(X)Logaritimo Com Base 10 ==--> Digite 'X' ou 'x' para iniciar um LOGARITIMO.");
+	printf("\n(O)Seno ==--> Digite 'O' ou 'o' para iniciar um Seno.");
+	printf("\n(K)Cosseno ==--> Digite 'K' ou 'k' para iniciar um Cosseno.");
+	printf("\n(T)Tangente ==--> Digite 'T' ou 't' para iniciar uma Tangente.");
+	
+	printf("\n\n=====================================================================");
+	printf("\n(M)Menu ==--> Digite 'M' ou 'm' para mostra o MENU do programa.");
+	printf("\n(L)Limpar ==--> Digite 'L' ou 'l' para LIMPAR o programa.");
+	printf("\n(S)Sair ==--> Digite 'S' ou 's' para ENCERRAR as ações do programa.");
+	printf("\n(Z)Zerar ==--> Digite 'Z' ou 'z' para ZERAR os valores númericos do programa.");
+	printf("\n(#)Temas ==--> Claro 'C/c' ou Escuro 'E/e' .");
+	printf("\n=====================================================================");
+}//Comando para apresentar esse manual (estetico).
+void saida(){
+	printf("\nEspere escutando uma musica de despedida Operador!\n");
+			printf("Essa música é um adeus e um obrigado por nos escolher!\n\n\n");
+			printf("  ^^^^   ___________________|========|    ^^^^ \n");
+			printf("( 0_0 ) |                        |    |  ( 0_0 )\n");
+			printf(" ( ! ) <|    Calculadora    ========   |> ( ! )\n");
+			printf(" (   )  |___________________     |    |   (   )\n");
+			printf("<|   |>                     |========|   <|   |>\n");
+			Beep(493, 250);
+            Beep(493, 250);
+            Beep(493, 250);
+            Beep(493, 250);
+            
+            Beep(586, 250);
+            Beep(586, 250);
+            Beep(586, 250);
+            Beep(586, 250);
+            
+            Beep(522, 250);
+            Beep(522, 250);
+            Beep(522, 250);
+            Beep(522, 250);
+            
+            Beep(784, 250);
+            Beep(784, 250);
+            Beep(784, 250);
+            Beep(784, 250);
+            Beep(784, 250);
+            Beep(784, 250);
+            Beep(784, 250);
+            Beep(784, 250);
+            Beep(784, 250);
+            Beep(784, 250);
+            Beep(784, 250);
+            Beep(784, 250);
+            
+            Beep(522, 250);
+            Beep(493, 250);
+            Beep(440, 250);
+            Beep(349, 250);
+            
+            Beep(392, 500);
+            Beep(392, 250);
+            Beep(586, 250);
+            Beep(522, 500);
+            Beep(493, 500);
+            
+            Beep(440, 500);
+            Beep(440, 250);
+            Beep(440, 250);
+            Beep(522, 500);
+            Beep(493, 250);
+            Beep(440, 250);
+            
+            Beep(392, 500);
+            Beep(392, 250);
+            Beep(986, 250);
+            
+            Beep(880, 250);
+            Beep(986, 250);
+            Beep(880, 250);
+            Beep(986, 250);
+            
+            Beep(392, 500);
+            Beep(392, 250);
+            Beep(586, 250);
+            Beep(522, 500);
+            Beep(493, 500);
+            
+            Beep(440, 500);
+            Beep(440, 250);
+            Beep(440, 250);
+            Beep(522, 500);
+            Beep(493, 250);
+            Beep(440, 250);
+            
+            Beep(392, 500);
+            Beep(392, 250);
+            Beep(986, 250);
+            
+            Beep(880, 250);
+            Beep(986, 250);
+            Beep(880, 250);
+            Beep(986, 250);
+            
+            Beep(392, 500);
+            Beep(392, 250);
+            Beep(586, 250);
+            Beep(522, 500);
+            Beep(493, 500);
+            
+            Beep(440, 500);
+            Beep(440, 250);
+            Beep(440, 250);
+            Beep(522, 500);
+            Beep(493, 250);
+            Beep(440, 250);
+            
+            Beep(392, 500);
+            Beep(392, 250);
+            Beep(986, 250);
+            
+            Beep(880, 250);
+            Beep(986, 250);
+            Beep(880, 250);
+            Beep(986, 250);
+            
+            Beep(392, 500);
+            Beep(392, 250);
+            Beep(586, 250);
+            Beep(522, 500);
+            Beep(493, 500);
+            
+            Beep(440, 500);
+            Beep(440, 250);
+            Beep(440, 250);
+            Beep(522, 500);
+            Beep(493, 250);
+            Beep(440, 250);
+            
+            Beep(392, 500);
+            Beep(392, 250);
+            Beep(986, 250);
+            
+            Beep(880, 250);
+            Beep(986, 250);
+            Beep(880, 250);
+            Beep(986, 250);
+            
+            Beep(392, 1000);
+			printf("\nObrigado e até outra hora Operador!");
+			exit(0);
+}//Comando para apresentar a música e mensagem de saida (estetico).
+
+
